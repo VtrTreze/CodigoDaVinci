@@ -11,6 +11,7 @@ public class CriarTarefa extends javax.swing.JFrame {
      */
     public CriarTarefa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -203,7 +204,6 @@ public class CriarTarefa extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton2)

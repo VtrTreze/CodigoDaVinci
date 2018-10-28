@@ -1,7 +1,5 @@
 package GUI;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Victor Rodrigues
@@ -13,6 +11,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      */
     public JanelaPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -160,40 +159,32 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void tblMinhasTarefasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMinhasTarefasMousePressed
 
         if (evt.getClickCount() == 2 && tblMinhasTarefas.getSelectedRow() != -1) {
-            
+
             int selectedRow = tblMinhasTarefas.getSelectedRow();
-            int selectedCol = tblMinhasTarefas.getSelectedColumn();
             
-            String nome;
-            String descricao;
-            
-            Object id = tblMinhasTarefas.getValueAt(selectedRow, 0);
-            Object objNome = tblMinhasTarefas.getValueAt(selectedRow, 2);
-            Object objDescricao = tblMinhasTarefas.getValueAt(selectedRow, 3);
-                        
-            if (objNome == null) {
-                nome = "";
-            } else {
-                nome = objNome.toString();
+            int id;
+
+            Object objId = tblMinhasTarefas.getValueAt(selectedRow, 0);
+
+            if (objId == null) {
+                id = 0;
             }
-            
-            if (objDescricao == null) {
-                descricao = "";
-            } else {
-                descricao = objDescricao.toString();
+            else {
+                id = Integer.parseInt(objId.toString());
             }
-            
+
             EditarTarefa editarTarefa = new EditarTarefa();
-            
+
             //JOptionPane.showMessageDialog(editarTarefa, nome + "----" + descricao);
-            
-            editarTarefa.editar(nome, descricao);
+
+            editarTarefa.editar(id);
 
             editarTarefa.setVisible(true);
         }
     }//GEN-LAST:event_tblMinhasTarefasMousePressed
 
     public static void main(String args[]) {
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
