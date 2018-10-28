@@ -1,17 +1,7 @@
 package GUI;
 
-import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
 import javax.swing.JTable;
-
-import net.coderazzi.filters.Filter;
-import net.coderazzi.filters.examples.menu.*;
-import net.coderazzi.filters.examples.utils.*;
-import net.coderazzi.filters.gui.AutoChoices;
-import net.coderazzi.filters.gui.CustomChoice;
-import net.coderazzi.filters.gui.FilterSettings;
-import net.coderazzi.filters.gui.IFilterEditor;
-import net.coderazzi.filters.gui.IFilterHeaderObserver;
-import net.coderazzi.filters.gui.TableFilterHeader;
 
 /**
  *
@@ -64,7 +54,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblMinhasTarefas.setEnabled(false);
+        tblMinhasTarefas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMinhasTarefasMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblMinhasTarefasMousePressed(evt);
+            }
+        });
         scrollPaneMinhasTarefas.setViewportView(tblMinhasTarefas);
 
         tabTarefasPend.addTab("Minhas Tarefas", scrollPaneMinhasTarefas);
@@ -157,7 +154,33 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         painelCriarTarefa.setVisible(true);
     }//GEN-LAST:event_btnCreateTaskActionPerformed
 
+    private void tblMinhasTarefasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMinhasTarefasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblMinhasTarefasMouseClicked
+
+    private void tblMinhasTarefasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMinhasTarefasMousePressed
+
+        if (evt.getClickCount() == 2 && tblMinhasTarefas.getSelectedRow() != -1) {
+            Object id = tblMinhasTarefas.getValueAt(tblMinhasTarefas.getSelectedRow(), 0);
+            Object nome = tblMinhasTarefas.getValueAt(tblMinhasTarefas.getSelectedRow(), tblMinhasTarefas.getSelectedColumn());
+            Object descricao = tblMinhasTarefas.getValueAt(tblMinhasTarefas.getSelectedRow(), tblMinhasTarefas.getSelectedColumn());
+            
+            EditarTarefa editar = new EditarTarefa(nome.toString(), descricao.toString());
+            
+            editar.editar();
+
+            editar.setVisible(true);
+        }
+    }//GEN-LAST:event_tblMinhasTarefasMousePressed
+
     public static void main(String args[]) {
+
+        JanelaPrincipal janela = new JanelaPrincipal();
+        JTable minhasTarefas = new JTable();
+
+        minhasTarefas.addMouseListener(new MouseAdapter() {
+
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
