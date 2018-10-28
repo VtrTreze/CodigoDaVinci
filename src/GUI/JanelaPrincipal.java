@@ -1,7 +1,6 @@
 package GUI;
 
-import java.awt.event.MouseAdapter;
-import javax.swing.JTable;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,8 +36,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         tblMinhasTarefas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"01", null, null, "Criar página do produto \"X\"", "Iniciada (Em atraso)", "24/11/2018", "26/11/2018"},
-                {"02", null, null, "Ajustar layout da tela de login", "Finalizada", "10/10/2018", "25/10/2018"},
+                {"01", null, "TS-001", "Criar página do produto \"X\"", "Iniciada (Em atraso)", "24/11/2018", "26/11/2018"},
+                {"02", null, "TS-005", "Ajustar layout da tela de login", "Finalizada", "10/10/2018", "25/10/2018"},
                 {"03", null, null, "Criar banco de dados do cliente \"X\"", "Cancelada", "01/01/2001", "01/02/2001"},
                 {"04", null, null, "Verificar problemas em sistema \"Y\"", "Finalizada", "25/12/2017", "30/12/2017"}
             },
@@ -161,26 +160,40 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void tblMinhasTarefasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMinhasTarefasMousePressed
 
         if (evt.getClickCount() == 2 && tblMinhasTarefas.getSelectedRow() != -1) {
-            Object id = tblMinhasTarefas.getValueAt(tblMinhasTarefas.getSelectedRow(), 0);
-            Object nome = tblMinhasTarefas.getValueAt(tblMinhasTarefas.getSelectedRow(), tblMinhasTarefas.getSelectedColumn());
-            Object descricao = tblMinhasTarefas.getValueAt(tblMinhasTarefas.getSelectedRow(), tblMinhasTarefas.getSelectedColumn());
             
-            EditarTarefa editar = new EditarTarefa(nome.toString(), descricao.toString());
+            int selectedRow = tblMinhasTarefas.getSelectedRow();
+            int selectedCol = tblMinhasTarefas.getSelectedColumn();
             
-            editar.editar();
+            String nome;
+            String descricao;
+            
+            Object id = tblMinhasTarefas.getValueAt(selectedRow, 0);
+            Object objNome = tblMinhasTarefas.getValueAt(selectedRow, 2);
+            Object objDescricao = tblMinhasTarefas.getValueAt(selectedRow, 3);
+                        
+            if (objNome == null) {
+                nome = "";
+            } else {
+                nome = objNome.toString();
+            }
+            
+            if (objDescricao == null) {
+                descricao = "";
+            } else {
+                descricao = objDescricao.toString();
+            }
+            
+            EditarTarefa editarTarefa = new EditarTarefa();
+            
+            //JOptionPane.showMessageDialog(editarTarefa, nome + "----" + descricao);
+            
+            editarTarefa.editar(nome, descricao);
 
-            editar.setVisible(true);
+            editarTarefa.setVisible(true);
         }
     }//GEN-LAST:event_tblMinhasTarefasMousePressed
 
     public static void main(String args[]) {
-
-        JanelaPrincipal janela = new JanelaPrincipal();
-        JTable minhasTarefas = new JTable();
-
-        minhasTarefas.addMouseListener(new MouseAdapter() {
-
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
